@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fisiología: presión, resistencia y flujo</title>
+<style>
+:root{--bg:#f3f5f7;--surface:#ffffff;--ink:#13202b;--muted:#566573;--line:#d5dce2;--accent:#b3263e;--accent-soft:#f8e3e7;--accent-ink:#7d1428;--cool:#1f6f8b;--cool-soft:#dcedf3;--cool-ink:#164f64;--soft:#e9eef2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Times New Roman",Times,serif;font-size:17px;line-height:1.65}
+main{max-width:760px;margin:0 auto;padding:28px 18px 48px}
+.crumb{display:inline-block;font-size:14px;color:var(--accent-ink);background:var(--accent-soft);padding:3px 12px;border-radius:999px;font-weight:700}
+h1,h2,h3{font-family:inherit;font-weight:700;line-height:1.2;margin:0}
+h1{font-size:clamp(28px,6vw,40px);margin:14px 0 6px}
+.sub{margin:0;color:var(--muted);font-size:18px;max-width:60ch}
+.by{margin:14px 0 0;font-size:15px;color:var(--muted);padding-top:12px;border-top:1px solid var(--line)}
+.by b{color:var(--ink);font-weight:700}
+h2{font-size:22px;margin:38px 0 12px}
+.text{max-width:72ch}
+.text p{margin:0 0 12px}
+.law{padding:6px 0 10px}
+.law+.law{margin-top:14px;padding-top:18px;border-top:1px solid var(--line)}
+.law h3{font-size:18px;margin:0 0 4px}
+.formula{font-style:italic;font-size:28px;margin:0 0 8px;line-height:1.3}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 18px}
+svg{display:block;width:100%;height:auto}
+.res-hi{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}
+.res-lo{fill:var(--cool-soft);stroke:var(--cool);stroke-width:1}
+.tube{fill:var(--surface);stroke:var(--ink);stroke-width:1}
+.tx-hi{fill:var(--accent-ink)}.tx-lo{fill:var(--cool-ink)}.tx-mu{fill:var(--muted)}
+.dim{stroke:var(--muted);stroke-width:1}
+.fl{stroke:var(--accent);stroke-dasharray:6 6;stroke-linecap:round}
+@keyframes mv{to{stroke-dashoffset:-12}}
+@media (prefers-reduced-motion: no-preference){.fl{animation:mv var(--d,1.4s) linear infinite}}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;margin-top:14px}
+.g label{display:block;font-size:15px;color:var(--muted);margin-bottom:2px}
+.g input{width:100%;accent-color:var(--accent)}
+.read{background:var(--soft);border-radius:10px;padding:10px 14px}
+.read .k{font-size:14px;color:var(--muted)}
+.read .v{font-size:28px;font-weight:700}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button{font:inherit;font-size:15px;padding:8px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mix{margin:0 0 14px;padding:14px 16px;border-left:4px solid var(--accent);background:var(--surface)}
+.mix .formula{font-size:26px;margin:0 0 6px}
+.mix p{margin:0}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:14px 0;max-width:72ch}
+dt{font-style:italic;font-weight:700;min-width:2.2em}
+dd{margin:0}
+.closing{margin:40px 0 0;text-align:center;color:var(--muted);font-size:16px}
+footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:15px}
+footer h2{font-size:17px;margin:0 0 8px;text-align:center}
+.ref{margin:0;padding-left:2em;text-indent:-2em;max-width:72ch}
+@media (max-width:600px){.g{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<span class="crumb">Fisiología · Sistema cardiovascular</span>
+<h1>Presión, resistencia y flujo</h1>
+<p class="sub">Cómo la ley de Ohm y la ley de Poiseuille explican el flujo de sangre en un vaso.</p>
+<p class="by"><b>Diana Jimena Rios Fosado</b> · QFB, Universidad de Guadalajara</p>
+
+<h2>Las leyes según Guyton y Hall</h2>
+<div class="text">
+<div class="law">
+<h3>Ley de Ohm: el flujo de sangre</h3>
+<p class="formula">F = ΔP / R</p>
+<p>En el capítulo sobre la visión general de la circulación, Hall y Hall (2021) explican que el flujo de sangre por un vaso depende de dos factores: la diferencia de presión entre sus dos extremos, que es la fuerza que empuja la sangre, y la resistencia vascular, que es el obstáculo que el vaso opone a su paso. La relación entre ambos es la ley de Ohm: el flujo es directamente proporcional a la diferencia de presión e inversamente proporcional a la resistencia.</p>
+<p>Lo que mueve la sangre es la diferencia de presión (ΔP = P₁ − P₂) y no el valor absoluto de la presión dentro del vaso. Dos vasos con presiones altas en ambos extremos tendrán muy poco flujo si la diferencia entre esos extremos es pequeña.</p>
+<p>El flujo es el volumen de sangre que pasa por un punto en un tiempo determinado y se expresa en mL/min o L/min. En un adulto en reposo, el flujo total de la circulación es de unos 5 L/min y equivale al gasto cardíaco. La resistencia no se mide de forma directa: se calcula a partir del flujo y de la diferencia de presión. Su inverso es la conductancia, que indica cuánta sangre pasa por el vaso por cada mmHg de diferencia de presión.</p>
+</div>
+<div class="law">
+<h3>Ley de Poiseuille: de qué depende la resistencia</h3>
+<p class="formula">F = π·ΔP·r⁴ / (8·η·L)</p>
+<p>La ley de Poiseuille explica por qué un vaso ofrece más o menos resistencia. Según esta ley, el flujo depende de cuatro variables: la diferencia de presión (ΔP), el radio del vaso (r), su longitud (L) y la viscosidad de la sangre (η). Al despejar la resistencia en la ley de Ohm queda R = 8ηL / πr⁴.</p>
+<p>La presión y el radio aumentan el flujo; la longitud y la viscosidad lo disminuyen. Pero el radio no pesa igual que los demás: aparece elevado a la cuarta potencia, así que es, con mucha ventaja, el factor que más influye. Cambios pequeños en el diámetro de un vaso producen cambios enormes en la cantidad de sangre que conduce. Si el radio se duplica, el flujo se multiplica por 16.</p>
+<p>La viscosidad depende sobre todo del hematocrito. La sangre normal es aproximadamente tres veces más viscosa que el agua y, cuando el hematocrito aumenta mucho, como en la policitemia, la viscosidad puede llegar a ser varias veces mayor y dificultar el flujo. Además, la ley supone un flujo laminar, es decir, en capas ordenadas y paralelas a la pared del vaso; si el flujo se vuelve turbulento, ya no se cumple con exactitud (Hall y Hall, 2021).</p>
+</div>
+</div>
+
+<h2>Mueve los cursores, profe</h2>
+<div class="panel">
+<svg viewBox="0 0 680 262" role="img" aria-label="Vaso entre un reservorio de presión alta P1 y uno de presión baja P2">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text class="tx-mu" x="30" y="30" font-size="13">ΔP = P₁ − P₂</text>
+<rect class="res-hi" x="30" y="50" width="70" height="160" rx="8"/>
+<text class="tx-hi" x="65" y="125" text-anchor="middle" font-size="16" font-weight="700">P₁</text>
+<text class="tx-hi" x="65" y="146" text-anchor="middle" font-size="13">alta</text>
+<rect class="res-lo" id="rr" x="300" y="50" width="70" height="160" rx="8"/>
+<text class="tx-lo" id="t1" x="335" y="125" text-anchor="middle" font-size="16" font-weight="700">P₂</text>
+<text class="tx-lo" id="t2" x="335" y="146" text-anchor="middle" font-size="13">baja</text>
+<rect class="tube" id="tube" x="100" y="100" width="200" height="60"/>
+<line class="fl" id="f0" x1="108" y1="130" x2="292" y2="130" stroke-width="2"/>
+<line class="fl" id="f1" x1="108" y1="115" x2="292" y2="115" stroke-width="2"/>
+<line class="fl" id="f2" x1="108" y1="145" x2="292" y2="145" stroke-width="2"/>
+<line class="dim" id="rm" x1="200" y1="130" x2="200" y2="100" marker-end="url(#arrow)"/>
+<text class="tx-mu" id="rt" x="200" y="92" text-anchor="middle" font-size="13">r</text>
+<line class="dim" id="lm" x1="100" y1="228" x2="300" y2="228" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<text class="tx-mu" id="lt" x="200" y="249" text-anchor="middle" font-size="13">L</text>
+</svg>
+<div class="g">
+<div><label for="d">Gradiente de presión ΔP (<span id="vd">1.0</span>×)</label><input type="range" id="d" min="0.5" max="2" step="0.1" value="1"></div>
+<div><label for="r">Radio r (<span id="vr">1.00</span>×)</label><input type="range" id="r" min="0.5" max="2" step="0.05" value="1"></div>
+<div><label for="l">Longitud L (<span id="vl">1.0</span>×)</label><input type="range" id="l" min="0.5" max="2" step="0.1" value="1"></div>
+<div><label for="e">Viscosidad η (<span id="ve">1.0</span>×)</label><input type="range" id="e" min="1" max="3" step="0.1" value="1"></div>
+</div>
+<div class="g">
+<div class="read"><div class="k">Resistencia R (Poiseuille)</div><div class="v" id="oR">1.00×</div></div>
+<div class="read"><div class="k">Flujo F (Ohm)</div><div class="v" id="oF">1.00×</div></div>
+</div>
+<div class="btns">
+<button type="button" id="b1">Reducir r a la mitad</button>
+<button type="button" id="b2">Restablecer</button>
+</div>
+</div>
+
+<h2>Explicación de la fórmula</h2>
+<div class="text">
+<div class="mix">
+<p class="formula">F = π·ΔP·r⁴ / (8·η·L)</p>
+<p>Esta es la ley de Poiseuille, que contiene a la ley de Ohm: al sustituir R = 8ηL / πr⁴ en F = ΔP / R se obtiene la fórmula completa.</p>
+</div>
+<dl>
+<dt>F</dt><dd>flujo sanguíneo: volumen de sangre por unidad de tiempo, por ejemplo mL/min.</dd>
+<dt>ΔP</dt><dd>diferencia de presión entre los dos extremos del vaso; es la fuerza que impulsa la sangre.</dd>
+<dt>r</dt><dd>radio interno del vaso. Va elevado a la cuarta potencia, por eso es la variable más poderosa.</dd>
+<dt>η</dt><dd>viscosidad de la sangre, que depende sobre todo del hematocrito.</dd>
+<dt>L</dt><dd>longitud del vaso: a mayor longitud, más resistencia.</dd>
+<dt>π, 8</dt><dd>constantes que resultan de deducir la ley.</dd>
+</dl>
+<p>Cómo leerla: lo que está arriba de la fracción aumenta el flujo (ΔP y r⁴) y lo que está abajo lo reduce (η y L). Por eso un vaso más ancho, con mayor diferencia de presión, más corto o con sangre menos viscosa deja pasar más sangre.</p>
+<p>Cómo leer el simulador: los resultados se muestran en veces (×) respecto al vaso inicial, que vale 1.00×. Si bajas el radio a la mitad y dejas los demás controles igual, la resistencia sube a 16.00× y el flujo baja a 0.06×, es decir, a 1/16 del original.</p>
+<p>En el cuerpo: como el radio pesa tanto, pequeños cambios en el diámetro de las arteriolas, ya sea por vasoconstricción o por vasodilatación, modifican mucho la resistencia periférica y, con ella, la presión arterial y el flujo que llega a cada órgano. Es un modelo: supone un tubo rígido y flujo laminar, mientras que los vasos reales se distienden.</p>
+</div>
+
+<p class="closing">un diagrama hecho porque estaba aburrida.</p>
+
+<footer>
+<h2>Referencias</h2>
+<p class="ref">Hall, J. E., y Hall, M. E. (2021). <em>Guyton y Hall. Tratado de fisiología médica</em> (14.ª ed.). Elsevier.</p>
+</footer>
+</main>
+<script>
+function $(i){return document.getElementById(i)}
+var d=$('d'),r=$('r'),l=$('l'),e=$('e');
+function upd(){
+var D=+d.value,R=+r.value,L=+l.value,E=+e.value;
+var res=E*L/Math.pow(R,4),F=D/res;
+var len=200*L,h=60*R,top=130-h/2;
+var t=$('tube');t.setAttribute('width',len);t.setAttribute('y',top);t.setAttribute('height',h);
+$('rr').setAttribute('x',100+len);
+$('t1').setAttribute('x',135+len);$('t2').setAttribute('x',135+len);
+var ys=[130,130-h/4,130+h/4];
+for(var i=0;i<3;i++){var f=$('f'+i);f.setAttribute('x2',100+len-8);f.setAttribute('y1',ys[i]);f.setAttribute('y2',ys[i]);f.style.setProperty('--d',Math.min(6,Math.max(0.15,1.4/F))+'s');f.setAttribute('stroke-width',F>3?3:2)}
+$('rm').setAttribute('x1',100+len/2);$('rm').setAttribute('x2',100+len/2);$('rm').setAttribute('y2',top+1);
+$('rt').setAttribute('x',100+len/2);$('rt').setAttribute('y',top-8);
+$('lm').setAttribute('x2',100+len);$('lt').setAttribute('x',100+len/2);
+$('vd').textContent=D.toFixed(1);$('vr').textContent=R.toFixed(2);$('vl').textContent=L.toFixed(1);$('ve').textContent=E.toFixed(1);
+$('oR').textContent=res.toFixed(2)+'×';$('oF').textContent=F.toFixed(2)+'×';
+}
+[d,r,l,e].forEach(function(x){x.addEventListener('input',upd)});
+$('b1').addEventListener('click',function(){r.value=0.5;upd()});
+$('b2').addEventListener('click',function(){d.value=1;r.value=1;l.value=1;e.value=1;upd()});
+upd();
+</script>
+</body>
+</html>
